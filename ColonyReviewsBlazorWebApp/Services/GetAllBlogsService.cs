@@ -8,7 +8,8 @@ namespace ColonyReviewsBlazorWebApp.Services
         private static readonly HttpClient httpClient = new HttpClient();
 
         private List<BlogModel>? allBlogs = new List<BlogModel>();
-        private string url = "https://localhost:7011/api/BlogPost";
+        private string devUrl = "https://localhost:7011/BlogPost";
+        private string prdUrl = "https://www.bloggyapi.com/blogpost";
 
         public List<BlogModel> GetData()
         {
@@ -23,7 +24,7 @@ namespace ColonyReviewsBlazorWebApp.Services
         {
             try
             {
-                allBlogs = await httpClient.GetFromJsonAsync<List<BlogModel>>(url);
+                allBlogs = await httpClient.GetFromJsonAsync<List<BlogModel>>(devUrl);
             }
             catch (Exception)
             {

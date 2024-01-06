@@ -1,3 +1,5 @@
+using System;
+using System.Net.Http;
 using ColonyReviewsBlazorWebApp.Client.Pages;
 using ColonyReviewsBlazorWebApp.Components;
 using ColonyReviewsBlazorWebApp.Components.Account;
@@ -38,6 +40,8 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 builder.Services.AddScoped<IGetAllBlogsService, GetAllBlogsService>();
+builder.Services.AddScoped<IPublishBlog, PublishBlog>();
+
 
 var app = builder.Build();
 

@@ -3,19 +3,33 @@
 @using ColonyReviewsBlazorWebApp.Services
 @inject IGetAllBlogsService GetAllBlogsService
 
-@attribute [StreamRendering]
+@attribute [StreamRendering(true)]
 
-
-@if (allBlogs == null)
-{
-    <div class="text-center mt-5">
-        <span class="spinner-border" role="status"></span>
-        <p class="mt-2">Loading blogs....</p>
-    </div>
-}
-else
-{
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @if (allBlogs == null)
+    {
+        @for (int i = 0; i < 6; i++)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="placeholder-image">
+                        <img src="#")" class="card-img-top" alt="Blog Image">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Loading...</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Author: Loading...</small>
+                    </div>
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
         @foreach (var blog in allBlogs)
         {
             <div class="col">
@@ -33,8 +47,9 @@ else
                 </div>
             </div>
         }
-    </div>
-}
+    }
+</div>
+
 
 @code {
     private static List<BlogModel>? allBlogs;
