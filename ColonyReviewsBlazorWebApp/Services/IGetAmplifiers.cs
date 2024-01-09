@@ -2,9 +2,9 @@
 
 namespace ColonyReviewsBlazorWebApp.Services
 {
-    public interface IGetAllBlogsService
+    public interface IGetAmplifiers
     {
         Task LoadDataAsync();
-        List<BlogModel> GetData();
+        List<Amplifier> GetData();
     }
 }

@@ -3,27 +3,27 @@ using System.Net.Http.Json;
 
 namespace ColonyReviewsBlazorWebApp.Services
 {
-    public class GetAllBlogsService : IGetAllBlogsService
+    public class GetAmplifiers : IGetAmplifiers
     {
         private static readonly HttpClient httpClient = new HttpClient();
 
-        private List<BlogModel>? allBlogs = new List<BlogModel>();
-        private string url = "https://localhost:7011/api/BlogPost";
+        private List<Amplifier>? amplifiers = new List<Amplifier>();
+        private string url = "https://localhost:7222/api/Amplifier";
 
-        public List<BlogModel> GetData()
+        public List<Amplifier> GetData()
         {
-            if (allBlogs == null) 
+            if (amplifiers == null)
             {
-                return new List<BlogModel>();
+                return new List<Amplifier>();
             }
-            return allBlogs;
+            return amplifiers;
         }
 
         public async Task LoadDataAsync()
         {
             try
             {
-                allBlogs = await httpClient.GetFromJsonAsync<List<BlogModel>>(url);
+                amplifiers = await httpClient.GetFromJsonAsync<List<Amplifier>>(url);
             }
             catch (Exception)
             {
