@@ -39,9 +39,8 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
-builder.Services.AddScoped<IGetAllBlogsService, GetAllBlogsService>();
-builder.Services.AddScoped<IPublishBlog, PublishBlog>();
-
+builder.Services.AddScoped<IBlogsService, BlogsService>();
+builder.Services.AddScoped<IGetAmplifiers, GetAmplifiers>();
 
 var app = builder.Build();
 

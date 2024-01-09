@@ -1,0 +1,53 @@
+﻿@page "/create-blogs"
+
+@using ColonyReviewsBlazorWebApp.Models
+@using ColonyReviewsBlazorWebApp.Services
+@inject IBlogsService BlogsService
+
+
+<h2>Publish blog</h2>
+<EditForm class="container mt-3 p-2 border border-2 rounded-2" Model="@blog" OnValidSubmit="@Submit" FormName="Publish" enctype="multipart/form-data">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="title" class="form-label">Title</label>
+        <InputText id="title" @bind-Value="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="content" class="form-label">Content</label>
+        <InputText id="content" @bind-Value="Content" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="author" class="form-label">Author</label>
+        <InputText id="author" @bind-Value="Author" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    <button class="btn btn-danger mt-2">Clear</button>
+</EditForm>
+
+@code {
+    public BlogModel blog = new BlogModel();
+    bool isDisabled = false;
+
+    [SupplyParameterFromForm]
+    public string? Title { get; set; }
+    [SupplyParameterFromForm]
+    public string? Content { get; set; }
+    [SupplyParameterFromForm]
+    public string? Author { get; set; }
+
+
+    private async Task Submit()
+    {
+        blog.Title = Title;
+        blog.Content = Content;
+        blog.Author = Author;
+
+        await BlogsService.PublishData(blog);
+    }
+
+}

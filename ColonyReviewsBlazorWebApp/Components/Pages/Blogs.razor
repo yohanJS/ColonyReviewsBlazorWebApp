@@ -1,7 +1,7 @@
 ﻿@page "/blogs"
 @using ColonyReviewsBlazorWebApp.Models
 @using ColonyReviewsBlazorWebApp.Services
-@inject IGetAllBlogsService GetAllBlogsService
+@inject IBlogsService BlogsService
 
 @attribute [StreamRendering(true)]
 
@@ -56,7 +56,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await GetAllBlogsService.LoadDataAsync();
-        allBlogs = GetAllBlogsService.GetData();
+        await BlogsService.LoadDataAsync();
+        allBlogs = BlogsService.GetData();
     }
 }
