@@ -1,3 +1,5 @@
+using System;
+using System.Net.Http;
 using ColonyReviewsBlazorWebApp.Client.Pages;
 using ColonyReviewsBlazorWebApp.Components;
 using ColonyReviewsBlazorWebApp.Components.Account;

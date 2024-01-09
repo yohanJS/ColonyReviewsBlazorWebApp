@@ -1,0 +1,39 @@
+﻿@page "/publish-blog"
+@using ColonyReviewsBlazorWebApp.Models
+@using ColonyReviewsBlazorWebApp.Services
+@inject IPublishBlog PublishBlogs
+
+<h3>Create Blog</h3>
+
+<EditForm Model="@blog" OnValidSubmit="CreateBlog" FormName="PublishBlog">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <InputText @bind-Value=blog.Title class="form-control" id="Title" />
+    </div>
+
+    <div class="form-group">
+        <label for="Content">Content</label>
+        <InputText @bind-Value=blog.Content class="form-control" id="Content" />
+    </div>
+
+    <div class="form-group">
+        <label for="Author">Auhtor</label>
+        <InputText @bind-Value=blog.Author class="form-control" id="Author" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Blog</button>
+</EditForm>
+
+@code {
+    private BlogModel blog = new BlogModel();
+    
+
+    private async Task CreateBlog()
+    {
+        // Save the blog data to the database using the service
+        await PublishBlogs.CreateBlogAsync(blog);
+    }
+}
